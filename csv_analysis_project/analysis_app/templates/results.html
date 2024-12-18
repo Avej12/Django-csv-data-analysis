@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSV Analysis Results</title>
+</head>
+<body>
+    <h2>First Rows</h2>
+    {{ first_rows|safe }}
+
+    <h3>Summary Statistics</h3>
+    {{ description|safe }}
+
+    <h3>Missing Values</h3>
+    {{ missing_values|safe }}
+
+    <h3>Data Visualizations</h3>
+    {% for col in columns %}
+        <img src="{% static col|add:'_histogram.png' %}" alt="Histogram of {{ col }}">
+    {% endfor %}
+</body>
+</html>
